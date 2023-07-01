@@ -31,11 +31,11 @@ class ViewController: UIViewController {
         
         //if let de kullanılabilir
         if let newName = storedName as? String{
-            nameLabel.text = newName
+            nameLabel.text = "Name \(newName)"
         }
         
         if let newBirthday = storedBirthday as? String{
-            birthdayLabel.text = newBirthday
+            birthdayLabel.text = "Birtday: \(newBirthday)"
         }
         
     }
@@ -55,6 +55,26 @@ class ViewController: UIViewController {
         
         nameLabel.text = "Name: \(name)"
         birthdayLabel.text = "Birthday: \(birthday)"
+        
+    }
+    
+    
+    @IBAction func deleteButton(_ sender: Any) {
+        
+        let storedName = UserDefaults.standard.object(forKey: "name")
+        let storedBirthday = UserDefaults.standard.object(forKey: "birthday")
+        
+        //storadName in String e çevrilmiş hali boş değilse kontrolü yap
+        if (storedName as? String) != nil{
+            UserDefaults.standard.removeObject(forKey: "name")
+            nameLabel.text = "Name:"
+        }
+        
+        if (storedBirthday as? String) != nil{
+            UserDefaults.standard.removeObject(forKey: "birthday")
+            birthdayLabel.text = "Birtday: "
+        }
+        
         
     }
     
